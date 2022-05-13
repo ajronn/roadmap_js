@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import { UsersService, USER } from "./services"
 
-function App() {
+import style from "./App.module.css"
+import ROADIMG from "./utils/images/road.png"
+
+export const App = () => {
+  const [users, setUsers] = useState<USER[]>([]);
+  useEffect(() => {
+    UsersService.getUsers().then((data) => setUsers(data))
+
+  }, [])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className={style.roadmap} >
+        {Array.from({length: 1}).map((_, i)=>{
+          return(
+            <img key={'road'+i} src={ROADIMG} height="149" width="128" alt="" />
+          )
+        })}
+      </div>
     </div>
   );
 }
-
-export default App;
