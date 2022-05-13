@@ -1,13 +1,9 @@
 import { useState } from "react";
 import { UsersService } from "../../services"
 import { useUser } from "../../providers"
-
-import ROADIMG from "../../utils/images/road.png"
-import ROADBARRIERIMG from "../../utils/images/road-barrier.png"
+import { MapGenerator } from "../../services/map-generator"
 
 import style from "./home.module.css"
-
-const A = Array.from({ length: 3 })
 
 interface LOGIN_FORM {
     username: string,
@@ -16,6 +12,7 @@ interface LOGIN_FORM {
 
 export const Home = () => {
     const { login, logout, isLoggedIn, setUser } = useUser();
+    const mapGenerator = new MapGenerator(20);
 
     const [loginForm, setLoginForm] = useState<LOGIN_FORM>({ username: '', password: '' });
 
@@ -66,20 +63,7 @@ export const Home = () => {
                 }
             </>
             <div className={style.roadmap} >
-                {A.map((_, i) => {
-                    return (
-                        <div className={style.roadContainer} >
-                            <img key={'road' + i} src={ROADIMG} height="149" width="100" alt="" />
-                            {i === A.length - 1
-                                ?
-                                <div className={style.roadBarrier} >
-                                    <img key={'road-barrier' + i} src={ROADBARRIERIMG} width="70" alt="" />
-                                </div>
-                                : ''
-                            }
-                        </div>
-                    )
-                })}
+                
             </div>
         </div>
     )
