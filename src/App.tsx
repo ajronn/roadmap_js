@@ -1,24 +1,19 @@
-import { useEffect, useState } from "react";
-import { UsersService, USER } from "./services"
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom"
+import {UserProvider} from "./providers"
 
-import style from "./App.module.css"
-import ROADIMG from "./utils/images/road.png"
+import {Home} from "./views"
 
 export const App = () => {
-  const [users, setUsers] = useState<USER[]>([]);
-  useEffect(() => {
-    UsersService.getUsers().then((data) => setUsers(data))
+  
 
-  }, [])
+
   return (
-    <div>
-      <div className={style.roadmap} >
-        {Array.from({length: 1}).map((_, i)=>{
-          return(
-            <img key={'road'+i} src={ROADIMG} height="149" width="128" alt="" />
-          )
-        })}
-      </div>
-    </div>
+    <UserProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </Router>
+    </UserProvider>
   );
 }
