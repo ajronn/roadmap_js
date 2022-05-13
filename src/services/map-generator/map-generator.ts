@@ -1,4 +1,4 @@
-import { OBJECTS, MAP, DIRECTIONS, rules } from "./models"
+import { OBJECTS, MAP, DIRECTIONS, allowed_objects_rules } from "./models"
 
 export class MapGenerator {
 
@@ -30,7 +30,7 @@ export class MapGenerator {
 
         Array.from({ length }).forEach(() => {
             const square = this.map[x][y];
-            const rule = rules[square]!;
+            const rule = allowed_objects_rules[square]!;
             const allowed_objects = rule[this.activeDirection]!;
             
         })

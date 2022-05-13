@@ -20,7 +20,7 @@ export type MAP = OBJECTS[][]
 type RULES = {
     [key in OBJECTS]?: { [key in DIRECTIONS]?: OBJECTS[] }
 }
-export const rules: RULES = {
+export const allowed_objects_rules: RULES = {
     [OBJECTS.HORIZONTAL]: {
         [DIRECTIONS.RIGHT]: [OBJECTS.LEFTDOWN, OBJECTS.LEFTUP, OBJECTS.HORIZONTAL],
         [DIRECTIONS.LEFT]: [OBJECTS.RIGHTDOWN, OBJECTS.RIGHTUP, OBJECTS.HORIZONTAL]
@@ -45,4 +45,11 @@ export const rules: RULES = {
         [DIRECTIONS.UP]: [OBJECTS.LEFTDOWN, OBJECTS.RIGHTDOWN, OBJECTS.VERTICAL],
         [DIRECTIONS.RIGHT]: [OBJECTS.LEFTDOWN, OBJECTS.LEFTUP, OBJECTS.HORIZONTAL],
     },
+}
+
+export const change_direction_rules = {
+    [OBJECTS.LEFTDOWN]: {},
+    [OBJECTS.LEFTUP]: {},
+    [OBJECTS.RIGHTDOWN]: {},
+    [OBJECTS.RIGHTUP]: {},
 }
