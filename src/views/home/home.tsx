@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { UsersService } from "../../services"
 import { useUser } from "../../providers"
-import { MapGenerator } from "../../services/map-generator"
+
+import { Roadmap } from ".."
 
 import style from "./home.module.css"
 
@@ -12,7 +13,7 @@ interface LOGIN_FORM {
 
 export const Home = () => {
     const { login, logout, isLoggedIn, setUser } = useUser();
-    const mapGenerator = new MapGenerator(20, 5);
+
 
     const [loginForm, setLoginForm] = useState<LOGIN_FORM>({ username: '', password: '' });
 
@@ -43,7 +44,7 @@ export const Home = () => {
     return (
         <div>
             <>
-                {!isLoggedIn
+                {/* {!isLoggedIn
                     ?
                     <div>
                         <label>
@@ -60,10 +61,10 @@ export const Home = () => {
                     <div>
                         <button onClick={onLogout} >Logout</button>
                     </div>
-                }
+                } */}
             </>
-            <div className={style.roadmap} >
-                
+            <div className={style.home} >
+                <Roadmap />
             </div>
         </div>
     )
