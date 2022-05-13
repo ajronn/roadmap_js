@@ -12,7 +12,7 @@ interface LOGIN_FORM {
 
 export const Home = () => {
     const { login, logout, isLoggedIn, setUser } = useUser();
-    const mapGenerator = new MapGenerator(20);
+    const mapGenerator = new MapGenerator(20, 5);
 
     const [loginForm, setLoginForm] = useState<LOGIN_FORM>({ username: '', password: '' });
 

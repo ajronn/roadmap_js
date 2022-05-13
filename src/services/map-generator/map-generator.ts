@@ -2,7 +2,7 @@ import { OBJECTS, MAP, DIRECTIONS, rules } from "./models"
 
 export class MapGenerator {
 
-    constructor(size: number) {
+    constructor(size: number, length: number) {
         const map: OBJECTS[][] = []
         Array.from({ length: size }).forEach(() => {
             const row: OBJECTS[] = []
@@ -11,21 +11,35 @@ export class MapGenerator {
             })
             map.push(row)
         })
-        map[0][0] = this.randStartPoint()
-        console.log(map[0][0])
-        console.log(this.activeDirection)
+        this.map = map;
+        this.randStartPoint();
+        this.generateRoad(length);
     }
 
-    randStartPoint(): OBJECTS {
+    private randStartPoint() {
         const variants = [OBJECTS.LEFTDOWN, OBJECTS.HORIZONTAL, OBJECTS.VERTICAL];
         const directions = [DIRECTIONS.DOWN, DIRECTIONS.RIGHT, DIRECTIONS.DOWN];
         const rand = Math.floor(Math.random() * variants.length);
         this.activeDirection = directions[rand];
-        return variants[rand];
+        this.map[0][0] = variants[rand];
     }
 
+    private generateRoad(length: number) {
+        let x = 0;
+        let y = 0;
 
+        Array.from({ length }).forEach(() => {
+            const square = this.map[x][y];
+            const rule = rules[square]!;
+            const allowed_objects = rule[this.activeDirection]!;
+            
+        })
+    }
 
-    map: MAP = []
-    activeDirection = DIRECTIONS.DOWN;
+    getMap() {
+        return this.map;
+    }
+
+    private map: MAP = []
+    private activeDirection = DIRECTIONS.DOWN;
 }

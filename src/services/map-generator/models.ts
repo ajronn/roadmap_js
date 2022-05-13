@@ -17,7 +17,10 @@ export enum DIRECTIONS {
 
 export type MAP = OBJECTS[][]
 
-export const rules = {
+type RULES = {
+    [key in OBJECTS]?: { [key in DIRECTIONS]?: OBJECTS[] }
+}
+export const rules: RULES = {
     [OBJECTS.HORIZONTAL]: {
         [DIRECTIONS.RIGHT]: [OBJECTS.LEFTDOWN, OBJECTS.LEFTUP, OBJECTS.HORIZONTAL],
         [DIRECTIONS.LEFT]: [OBJECTS.RIGHTDOWN, OBJECTS.RIGHTUP, OBJECTS.HORIZONTAL]
